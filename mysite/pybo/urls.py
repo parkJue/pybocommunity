@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import base_views, question_views, answer_views, comment_views, vote_views
+from .views import base_views, question_views, answer_views, comment_views, vote_views, fileupload_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'pybo'
 
@@ -41,4 +43,7 @@ urlpatterns = [
     path('vote/question/<int:question_id>/', vote_views.vote_question, name='vote_question'),
     path('vote/answer/<int:answer_id>/', vote_views.vote_answer, name='vote_answer'),
 
-]
+    # fileupload_views.py
+    path('fileupload/', fileupload_views.FileUpload, name='fileupload')
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

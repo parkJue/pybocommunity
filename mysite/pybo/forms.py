@@ -1,5 +1,5 @@
 from django import forms
-from pybo.models import Question, Answer, Comment
+from pybo.models import Question, Answer, Comment, FileUpload
 
 class QuestionForm(forms.ModelForm):
     class Meta:
@@ -25,3 +25,8 @@ class CommentForm(forms.ModelForm):
         labels = {
             'content': '댓글내용',
         }
+
+class FileUploadForm(forms.ModelForm):
+    class Meta:
+        model = FileUpload
+        fields = ['title', 'imgfile','content']
